@@ -57,6 +57,7 @@ paths:
       tags:
       - Data Access
       summary: "List a batch's dataset files"
+      description: You can use this endpoint to list a batch's dataset files. For more information on using this endpoint, please read the [Data Access developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-access/api.html?lang=en#retrieve-list-of-files-within-a-batch).
       parameters:
       - name: "start"
         in: "query"
@@ -214,7 +215,7 @@ paths:
       - Files
       summary: "Retrieve a file"
       description: >-
-        Returns either a complete file or a directory of chunked data that makes up the file. The response contains a data array that may contain a single entry or a list of files belonging to that directory.
+        You can use this endpoint to retrieve either a complete file or a directory of chunked data that makes up the file. The response contains a data array that may contain a single entry or a list of files belonging to that directory. For more information on using this endpoint, please read the [Data Access developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-access/api.html?lang=en#access-the-contents-of-a-file).
       parameters:
       - name: "Range"
         in: "header"
