@@ -57,6 +57,7 @@ paths:
         - Batches
       operationId: listBatches
       summary: Retrieve a list of batches
+      description: You can use this endpoint to retrieve a list of batches that belong to your IMS Organization. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/list-objects.html?lang=en).
       produces:
         - application/json
       parameters:
@@ -282,6 +283,7 @@ paths:
         - Batches
       summary: Create a new batch
       operationId: createBatch
+      description: You can use this endpoint to create a new batch. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/create-batch.html?lang=en).
       consumes:
         - application/json
       produces:
@@ -492,6 +494,7 @@ paths:
         - Batches
       operationId: retrieveBatch
       summary: Look up a batch
+      description: You can use this endpoint to look up a specified batch. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/look-up-object.html?lang=en). 
       produces:
         - application/json
       parameters:
@@ -609,7 +612,7 @@ paths:
       tags:
         - Batches
       summary: Create a new batch
-      operationId: createBatch
+      operationId: createSpecificBatch
       consumes:
         - application/json
       produces:
@@ -645,8 +648,9 @@ paths:
     put:
       tags:
         - Batches
-      summary: Update a batch
-      operationId: updateBatch
+      summary: Replace a batch
+      operationId: replaceBatch
+      description: You can use this endpoint to **replace** the contents of a specific batch. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/replace-object.html?lang=en).
       consumes:
         - application/json
       produces:
@@ -683,6 +687,7 @@ paths:
       tags:
         - Batches
       summary: Update one or more batch attributes
+      description: You can use this endpoint to **update** the contents of a specific batch. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/update-object.html?lang=en).
       operationId: patchBatch
       consumes:
         - application/json
@@ -756,6 +761,7 @@ paths:
       tags:
         - Datasets
       summary: Retrieve a list of datasets
+      description: You can use this endpoint to retrieve a list of datasets. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/list-objects.html?lang=en).
       operationId: listDatasets
       produces:
         - application/json
@@ -860,6 +866,7 @@ paths:
         - Datasets
       summary: Create a new dataset
       operationId: createDataset
+      description: You can use this endpoint to create a new dataset. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/create-dataset.html?lang=en).
       consumes:
         - application/json
       produces:
@@ -910,6 +917,7 @@ paths:
         - Datasets
       summary: Look up a dataset
       operationId: retrieveDataset
+      description: You can use this endpoint to look up a specified dataset. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/look-up-object.html?lang=en).
       produces:
         - application/json
       parameters:
@@ -978,6 +986,7 @@ paths:
         - Datasets
       summary: Update a dataset
       operationId: putDataset
+      description: You can use this endpoint to **replace** a dataset's contents. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/replace-object.html?lang=en).
       consumes:
         - application/json
       produces:
@@ -1011,6 +1020,7 @@ paths:
       tags:
         - Datasets
       summary: Update a dataset's attributes
+      description: You can use this endpoint to **update** a dataset's content. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/update-object.html?lang=en).
       operationId: patchDataset
       consumes:
         - application/json
@@ -1047,6 +1057,7 @@ paths:
       tags:
         - Datasets
       summary: Delete a dataset
+      description: You can use this endpoint to delete a dataset. For more information on using this endpoint, please read the [Catalog developer guide](https://experienceleague.adobe.com/docs/experience-platform/catalog/api/delete-object.html?lang=en).
       operationId: deleteDataset
       consumes:
         - application/json
