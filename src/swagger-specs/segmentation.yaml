@@ -47,6 +47,7 @@ paths:
       tags:
         - Export jobs
       summary: Retrieve a list of all export jobs
+      description: You can use this endpoint to retrieve a list of all the export jobs for the IMS Organization. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/export-jobs.html?lang=en#retrieve-list).
       operationId: listExportJobs
       produces:
         - application/json
@@ -90,6 +91,7 @@ paths:
       tags:
         - Export jobs
       summary: Create a new export job
+      description: You can use this endpoint to create a new export job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/export-jobs.html?lang=en#create).
       operationId: createExportJob
       consumes:
         - application/json
@@ -155,6 +157,7 @@ paths:
       tags:
         - Export jobs
       summary: Retrieve an export job
+      description: You can use this endpoint to look up a specified export job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/export-jobs.html?lang=en#get).
       operationId: retrieveExportJob
       produces:
         - application/json
@@ -184,6 +187,7 @@ paths:
       tags:
         - Export jobs
       summary: Cancel or delete an export job
+      description: You can use this endpoint to cancel or delete a specified export job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/export-jobs.html?lang=en#delete).
       operationId: cancelExportJob
       produces:
         - application/json
@@ -214,6 +218,7 @@ paths:
       tags:
       - Segment definitions
       summary: List segment definitions
+      description: You can use this endpoint to list all the segment definitions on your IMS Organization. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-definitions.html?lang=en#list).
       operationId: listSegmentDefinitions
       produces:
       - application/json
@@ -271,6 +276,7 @@ paths:
       tags:
       - Segment definitions
       summary: Create a new segment definition
+      description: You can use this endpoint to create a new segment definition. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-definitions.html?lang=en#create).
       operationId: createSegmentDefinition
       consumes:
       - application/json
@@ -312,6 +318,7 @@ paths:
       tags:
       - Segment definitions
       summary: Retrieve a segment definition
+      description: You can use this endpoint to retrieve the specified segment definition. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-definitions.html?lang=en#get).
       operationId: retrieveSegmentDefinitionById
       produces:
       - application/json
@@ -343,6 +350,7 @@ paths:
       tags:
       - Segment definitions
       summary: Delete a segment definition
+      description: You can use this endpoint to delete the specified segment definition. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-definitions.html?lang=en#delete).
       operationId: deleteSegmentDefinition
       produces:
       - application/json
@@ -371,7 +379,8 @@ paths:
     patch:
       tags:
         - Segment definitions
-      summary: Overwrite a segment definition.
+      summary: Update a segment definition
+      description: You can use this endpoint to **update** the contents of the specified segment definition. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-definitions.html?lang=en#update-a-specific-segment-definition).
       operationId: patchSegmentDefinition
       consumes:
         - application/json
@@ -412,6 +421,7 @@ paths:
       tags:
         - Segment definitions
       summary: Retrieve multiple segment definitions using multiple segment definition IDs
+      description: You can use this endpoint to retrieve multiple segment definitions that you have specified for. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-definitions.html?lang=en#bulk-get).
       operationId: bulkGetSegmentDefinitions
       produces:
       - application/json
@@ -451,7 +461,7 @@ paths:
       tags:
         - Segment definitions
       summary: Convert a segment definition
-      description: This endpoint converts a segment definition from pql/text to pql/json or from pql/json to pql/text.
+      description: You can use this endpoint to convert a segment definition from pql/text to pql/json or from pql/json to pql/text. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-definitions.html?lang=en#convert-segment-definition).
       operationId: convertSegmentDefinition
       produces:
         - application/json
@@ -487,6 +497,7 @@ paths:
       tags:
         - Segment jobs
       summary: List all segment job requests
+      description: You can use this endpoint to retrieve a list of all the segment job requests on your IMS Organization. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-jobs.html?lang=en#retrieve-list).
       operationId: listSegmentJobs
       produces:
         - application/json
@@ -560,6 +571,7 @@ paths:
       tags:
         - Segment jobs
       summary: Create a segment job request
+      description: You can use this endpoint to create a new segment job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-jobs.html?lang=en#create).
       operationId: createSegmentJob
       consumes:
         - application/json
@@ -614,6 +626,7 @@ paths:
       tags:
         - Segment jobs
       summary: Retrieve a segment job request
+      description: You can use this endpoint to retrieve the specified segment job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-jobs.html?lang=en#get).
       operationId: retrieveSegmentJob
       produces:
         - application/json
@@ -639,6 +652,7 @@ paths:
       tags:
         - Segment jobs
       summary: Cancel or delete a segment job request
+      description: You can use this endpoint to cancel or delete the specified segment job request. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-jobs.html?lang=en#delete).
       operationId: deleteSegmentJob
       produces:
         - application/json
@@ -666,6 +680,7 @@ paths:
       tags:
         - Segment jobs
       summary: Retrieve multiple segment jobs using multiple job IDs
+      description: You can use this endpoint to retrieve multiple specified segment jobs. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-jobs.html?lang=en#bulk-get).
       operationId: bulkGetSegmentJobs
       produces:
       - application/json
@@ -705,6 +720,7 @@ paths:
       tags:
       - Previews
       summary: Create a new preview job
+      description: You can use this endpoint to create a new preview job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/previews-and-estimates.html?lang=en#create-preview).
       operationId: createPreview
       consumes:
       - application/json
@@ -747,6 +763,7 @@ paths:
       tags:
       - Previews
       summary: Retrieve the results of a preview job
+      description: You can use this endpoint to retrieve the results of the specified preview job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/previews-and-estimates.html?lang=en#get-preview).
       operationId: retrievePreview
       produces:
       - application/json
@@ -785,6 +802,7 @@ paths:
       tags:
       - Previews
       summary: Cancel or delete a preview job
+      description: You can use this endpoint to cancel or delete the specified preview job. 
       operationId: deletePreview
       produces:
       - application/json
@@ -810,6 +828,7 @@ paths:
       tags:
       - Estimates
       summary: Retrieve the results of an estimate job
+      description: You can use this endpoint to retrieve the results of the specified estimate job. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/previews-and-estimates.html?lang=en#get-estimate).
       operationId: retrieveEstimate
       produces:
       - application/json
@@ -835,6 +854,7 @@ paths:
       tags:
       - Schedules
       summary: Retrieve a list of schedules for your IMS Organization
+      description: You can use this endpoint to retrieve a list of schedules for your IMS Organization. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/schedules.html?lang=en#retrieve-list).
       operationId: listSchedules
       produces:
       - application/json
@@ -862,7 +882,9 @@ paths:
       - Schedules
       summary: Create a schedule
       description: >-
-        This endpoint is used to create a schedule, including specifying the time when the schedule should be triggered. Note that thee scheduler is updated periodically (approximately every 30 minutes), so changes to a schedule may not go into effect immediately.
+        You can use this endpoint to create a schedule, including specifying the time when the schedule should be triggered. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/schedules.html?lang=en#create).
+        
+        **Note:** The scheduler is updated periodically (approximately every 30 minutes), so changes to a schedule may not go into effect immediately.
       operationId: createSchedule
       consumes:
       - application/json
@@ -908,7 +930,9 @@ paths:
       - Schedules
       summary: Retrieve a schedule
       description: >-
-        The scheduler is updated periodically (approximately every 30 minutes), so changes to a schedule may not go into effect immediately.
+        You can use this endpoint to look up the specified schedule. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/schedules.html?lang=en#get).
+        
+        **Note:** The scheduler is updated periodically (approximately every 30 minutes), so changes to a schedule may not go into effect immediately.
       operationId: retrieveSchedule
       produces:
       - application/json
@@ -935,7 +959,9 @@ paths:
       - Schedules
       summary: Update a schedule
       description: >-
-        This endpoint is ued to update a schedule, including changing the trigger time or enabling/disabling the schedule. . Note that the scheduler is updated periodically (approximately every 30 minutes), so changes to a schedule may not go into effect immediately.
+        You can use this endpoint is update a schedule, including changing the trigger time or enabling/disabling the schedule. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/schedules.html?lang=en#get).
+        
+        **Note** The scheduler is updated periodically (approximately every 30 minutes), so changes to a schedule may not go into effect immediately.
       operationId: updateSchedule
       produces:
       - application/json
@@ -972,6 +998,7 @@ paths:
       tags:
       - Schedules
       summary: Delete a schedule
+      description: You can use this endpoint to delete the specified schedule. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/schedules.html?lang=en#delete-a-specific-schedule).
       operationId: deleteSchedule
       produces:
       - application/json
@@ -997,7 +1024,7 @@ paths:
           - Segment search
         summary: List search count results
         description: >-
-          This endpoint is used to retrieve a list of search count results, which is queried across all namespaces.
+          You can use this endpoint to retrieve a list of search count results, which is queried across all namespaces. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-search.html?lang=en#search-across-multiple-namespaces).
         operationId: listSearchCounts
         produces:
           - application/json
@@ -1039,7 +1066,7 @@ paths:
           - Segment search
         summary: List full-text indexed objects
         description: >-
-          This endpoint retrieves a list of all full text indexed objects contained within a namespace.
+          You can use this endpoint to retrieve a list of all full text indexed objects contained within a namespace. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-search.html?lang=en#search-individual-entities).
         operationId: listFullTextIndexedObjects
         produces:
           - application/json
@@ -1104,7 +1131,7 @@ paths:
         tags:
           - Segment search
         summary: Retrieve a search object's taxonomic information
-        description: "Show the search object's organization"
+        description: You can use this endpoint to show the search object's organization. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/segmentation/api/segment-search.html?lang=en#get-structural-information-about-a-search-object).
         operationId: retrieveSearchObjectStructure
         produces:
           - application/json
