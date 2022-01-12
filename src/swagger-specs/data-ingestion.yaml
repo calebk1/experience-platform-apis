@@ -45,6 +45,7 @@ paths:
       tags:
       - "Streaming Ingestion"
       summary: "Send messages to Adobe Experience Platform"
+      description: You can use this endpoint to send messages to Adobe Experience Platform through streaming ingestion. For more information on using this endpoint, please read the tutorial on [creating an HTTP streaming connection](https://experienceleague.adobe.com/docs/experience-platform/sources/api-tutorials/create/streaming/http.html?lang=en).
       operationId: "sendMessage"
       consumes:
       - "application/json"
@@ -115,6 +116,7 @@ paths:
       tags:
       - "Streaming Ingestion"
       summary: "Send multiple messages to Adobe Experience Platform"
+      description: You can use this endpoint to send multiple messages to Adobe Experience Platform using streaming ingestion. For more information on using this endpoint, please read the tutorial on [sending multiple messages in a single HTTP request](https://experienceleague.adobe.com/docs/experience-platform/ingestion/tutorials/streaming-multiple-messages.html?lang=en).
       operationId: "postBatchOfStreamingMessages"
       consumes:
       - "application/json"
@@ -172,6 +174,7 @@ paths:
       tags:
         - "Batch Ingestion"
       summary: "Create a new batch"
+      description: You can use this endpoint to create a new batch. For more information on using this endpoint, please read the [Batch ingestion developer guide](https://experienceleague.adobe.com/docs/experience-platform/ingestion/batch/api-overview.html?lang=en#create-batch).
       operationId: "createBatch"
       consumes:
         - "application/json"
@@ -210,7 +213,7 @@ paths:
       - "Batch Ingestion"
       summary: "Upload a small file to a dataset"
       description: >-
-        This endpoint lets you upload files under datasets for a batch initialized by the bulk ingestion API. This puts the entire request stream as the file bytes under the path denoted by the `filePath` and is idempotent. Subsequent calls to this endpoint will replace the file that exists on the referenced path.
+        You can use this endpoint to upload files under datasets for a batch initialized by the bulk ingestion API. This puts the entire request stream as the file bytes under the path denoted by the `filePath` and is idempotent. Subsequent calls to this endpoint will replace the file that exists on the referenced path. For more information on using this endpoint, please read the [Data Ingestion developer guide](https://experienceleague.adobe.com/docs/experience-platform/ingestion/batch/api-overview.html?lang=en#upload-files).
 
         **Note:** Due to gateway size and timeout limits, there is a size threshold(currently 256MB). If the file is larger than that, you **must** use the large file upload mechanism.
 
@@ -265,7 +268,7 @@ paths:
       tags:
       - "Batch Ingestion"
       summary: "Upload part of a large file to a batch"
-      description: "Files larger than 256MB are uploaded in parts. The PATCH endpoint provides you a way to upload a part of your large file that was initialized via the POST endpoint."
+      description: "Files larger than 256MB are uploaded in parts. You can use this endpoint to upload a part of your large file that was initialized via the POST endpoint. For more information on using this endpoint, please read the [Data Ingestion developer guide](https://experienceleague.adobe.com/docs/experience-platform/ingestion/batch/api-overview.html?lang=en#upload-large-file-chunks)."
       operationId: "uploadLargeFilePart"
       consumes:
       - "multipart/form-data"
@@ -331,8 +334,8 @@ paths:
     post:
       tags:
       - "Batch Ingestion"
-      summary: "Either initialize or finish uploading a large file"
-      description: "This endpoint should only be used when uploading a large file to the batch. Large file upload should be used for files larger than 256MB."
+      summary: "Initializing or finish uploading a large file"
+      description: "You can use this endpoint to finish uploading a large file to the batch. Large file upload should be used for files larger than 256MB. For more information on using this endpoint, please read the [Data Ingestion developer guide](https://experienceleague.adobe.com/docs/experience-platform/ingestion/batch/api-overview.html?lang=en#complete-large-file)."
       operationId: "completeLargeFileUpload"
       consumes:
       - "multipart/form-data"
@@ -384,7 +387,7 @@ paths:
       tags:
       - "Batch Ingestion"
       summary: "Get the current status of the large file"
-      description: "Files larger than 256MB are uploaded in parts. The HEAD endpoint provides a way to get the byte range information received by the server so far."
+      description: "Files larger than 256MB are uploaded in parts. You can use this endpoint to get the byte range information received by the server so far. For more information on using this endpoint, please read the [Data Ingestion developer guide](https://experienceleague.adobe.com/docs/experience-platform/ingestion/batch/overview.html?lang=en#check-batch-status)."
       operationId: "getLargeFileStatus"
       parameters:
         - $ref: '#/parameters/authorization'
@@ -517,7 +520,7 @@ paths:
       tags:
       - "Batch Ingestion"
       summary: "Finish uploading a file"
-      description: "Small file upload is used for files 256MB or smaller."
+      description: "You can use this endpoint to signal that the batch is finished uploading and is ready for promotion. This endpoint should be used for small file upload, which means the file is 256MB or smaller. For more information on using this endpoint, please read the [Data Ingestion developer guide](https://experienceleague.adobe.com/docs/experience-platform/ingestion/batch/api-overview.html?lang=en#complete-batch)."
       operationId: "completeBatch"
       produces:
       - "application/json"

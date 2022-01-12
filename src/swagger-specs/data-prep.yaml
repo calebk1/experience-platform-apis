@@ -30,6 +30,7 @@ paths:
       tags:
         - Functions
       summary: Validate an expression
+      description: You can use this endpoint to validate the provided expression. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/functions.html?lang=en#validate-expressions).
       operationId: validateExpression
       consumes:
         - application/json
@@ -72,6 +73,7 @@ paths:
       tags:
         - Functions
       summary: List the available mapping set functions
+      description: You can use this endpoint to retrieve a list of all the available mapping set functions. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/functions.html?lang=en#list-mapping-set-functions).
       operationId: listMappingSetFunctions
       produces:
         - application/json
@@ -137,6 +139,7 @@ paths:
       tags:
         - Functions
       summary: List the available mapping set operators
+      description: You can use this endpoint to retrieve a list of all the available mapping set operators. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/functions.html?lang=en#list-mapping-set-operators).
       operationId: listMappingSetOperators
       produces:
         - application/json
@@ -205,6 +208,7 @@ paths:
       tags:
         - Mapping sets
       summary: List mapping sets
+      description: You can use this endpoint to list all the mapping sets on your IMS Organization. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#list-mapping-sets).
       operationId: listMappingSets
       produces:
         - application/json
@@ -265,6 +269,7 @@ paths:
       tags:
         - Mapping sets
       summary: Create a mapping set
+      description: You can use this endpoint to create a new mapping set. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#create-a-mapping-set).
       operationId: createMappingSet
       consumes:
         - application/json
@@ -311,6 +316,7 @@ paths:
       tags:
         - Mapping sets
       summary: Validate a mapping set
+      description: You can use this endpoint to validate and confirm your mapping will properly work. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#validate-mappings).
       operationId: validateMappingSet
       consumes:
         - application/json
@@ -365,6 +371,7 @@ paths:
       tags:
         - Mapping sets
       summary: Preview mapping sets
+      description: You can use this endpoint to preview what your data will be mapped to. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#preview-data-for-mappings).
       operationId: previewMappingSet
       consumes:
         - application/json
@@ -401,6 +408,7 @@ paths:
       tags:
         - Mapping sets
       summary: Retrieve a mapping set
+      description: You can use this endpoint to retrieve a specified mapping set. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#look-up-a-mapping-set).
       operationId: retrieveMappingSet
       produces:
         - application/json
@@ -446,6 +454,7 @@ paths:
       tags:
         - Mapping sets
       summary: Update a mapping set
+      description: You can use this endpoint to update a specified mapping set. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#update-a-mapping-set).
       operationId: putMappingSet
       consumes:
         - application/json
@@ -487,6 +496,7 @@ paths:
       tags:
         - Mapping sets
       summary: Retrieve a list of mappings for a specified mapping set
+      description: You can use this endpoint to retrieve a list of mappings for the specified mapping set. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#list-the-mappings-for-a-mapping-set).
       operationId: listMappings
       produces:
         - application/json
@@ -520,6 +530,7 @@ paths:
       tags:
         - Mapping sets
       summary: Retrieve a mapping from a specified mapping set
+      description: You can use this endpoint to retrieve the specified mapping from a specific mapping set. For more information on using this endpoint, please read the [Data Prep developer guide](https://experienceleague.adobe.com/docs/experience-platform/data-prep/api/mapping-set.html?lang=en#look-up-a-mapping-within-a-mapping-set).
       operationId: retrieveMapping
       produces:
         - application/json
