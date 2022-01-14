@@ -50,6 +50,9 @@ paths:
       summary: List all computed attributes
       description: >-
         **Warning: Computed attributes functionality is currently in alpha and is not available to all users. Functionality is subject to change.**
+
+
+        You can use this endpoint to retrieve a list of all the computed attributes in your IMS Organization. For more information on using this endpoint, please read the [Segmentation developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/computed-attributes/ca-api.html?lang=en#list-all-computed-attributes).
       operationId: listComputedAttributes
       produces:
         - application/json
@@ -113,6 +116,9 @@ paths:
       summary: Retrieve a specific computed attribute
       description: >- 
         **Warning: Computed attributes functionality is currently in alpha and is not available to all users. Functionality is subject to change.** 
+
+
+        You can use this endpoint to retrieve the specified computed attribute. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/computed-attributes/ca-api.html?lang=en#view-a-computed-attribute).
       operationId: retrieveComputedAttribute
       produces:
         - application/json
@@ -139,6 +145,9 @@ paths:
       summary: Update a computed attribute
       description: >- 
         **Warning: Computed attributes functionality is currently in alpha and is not available to all users. Functionality is subject to change.** 
+
+
+        You can use this endpoint to update a contributed attribute. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/computed-attributes/ca-api.html?lang=en#update-a-computed-attribute).
       operationId: updateComputedAttribute
       produces:
         - application/json
@@ -151,7 +160,7 @@ paths:
         - $ref: '#/parameters/computedAttributeUpdate'
       responses:
         '204':
-          description: Returns HTTP Status 204 (No Content) and an empty response body
+          description: A successful response returns an empty response body
         '404':
           description: Computed attribute not found
         '500':
@@ -164,6 +173,9 @@ paths:
       summary: Delete a computed attribute
       description: >- 
         **Warning: Computed attributes functionality is currently in alpha and is not available to all users. Functionality is subject to change.** 
+
+
+        You can use this endpoint to delete a computed attribute. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/computed-attributes/ca-api.html?lang=en#delete-a-computed-attribute).
       operationId: deleteComputedAttribute
       produces:
         - application/json
@@ -175,7 +187,7 @@ paths:
         - $ref: '#/parameters/x-sandbox-name' 
       responses:
         '200':
-          description: Returns HTTP Status 200 (OK) and an empty response body
+          description: A successful response returns an empty response body
         '404':
           description: Computed attribute not found
         '422':
@@ -189,8 +201,8 @@ paths:
       tags:
         - Merge policies
       summary: List merge policies
-      description: ''
-      operationId: getMany
+      description: You can use this endpoint to list all the merge policies that belong to your IMS Organization. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/merge-policies/merge-policies.html?lang=en#list-multiple-merge-policies-by-criteria).
+      operationId: listMergePolicies
       produces:
         - application/json
       parameters:
@@ -198,33 +210,24 @@ paths:
         - $ref: '#/parameters/x-api-key'
         - $ref: '#/parameters/x-gw-ims-org-id'
         - $ref: '#/parameters/x-sandbox-name'      
-        - name: x-request-id
-          in: header
-          description: Request Id
-          required: false
-          type: string
-          x-example: q0gf6caRuRtX2s5khaN1Zgd1OoEXcPJA
-        - name: start
-          in: query
-          description: Page offset - As per created time of resource
-          required: false
-          type: string
-          x-example: 2
-        - name: limit
-          in: query
-          description: Page Size
-          required: false
-          type: integer
-          x-example: 10
+        - $ref: '#/parameters/x-request-id'
+        - $ref: '#/parameters/start'
+        - $ref: '#/parameters/limit'
         - name: orderBy
           in: query
-          description: Model attribute which will be using for ordering
+          description: The attribute which the merge policies will be ordered by. To sort in ascending order, add `+` in front of the attribute. To sort in descending order, add `-` in front of the attribute.
           required: false
           type: string
           x-example: value
+        - name: isActiveOnEdge
+          in: query
+          description: A boolean value that filters results by whether or not the merge policy is active on edge.
+          required: false
+          type: boolean
+          x-example: false
         - name: schema.name
           in: query
-          description: Schema class ID
+          description: The name of the schema to filter by.
           required: false
           type: string
           x-example: _xdm.context.profile
@@ -247,7 +250,7 @@ paths:
       tags:
         - Merge policies
       summary: Create a merge policy
-      description: ''
+      description: You can use this endpoint to create a new merge policy. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/merge-policies/merge-policies.html?lang=en#create-a-merge-policy).
       operationId: createMergePolicy
       produces:
         - application/json
@@ -295,7 +298,7 @@ paths:
       tags:
         - Merge policies
       summary: Retrieve a merge policy
-      description: ''
+      description: You can use this endpoint to look up the specified merge policy. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/merge-policies/merge-policies.html?lang=en#access-a-single-merge-policy-by-id).
       operationId: retrieveMergePolicy
       produces:
         - application/json
@@ -326,7 +329,7 @@ paths:
       tags:
       - Merge policies
       summary: Update a merge policy
-      description: ''
+      description: You can use this endpoint to **overwrite** the contents of the specified merge policy. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/merge-policies/merge-policies.html?lang=en#overwrite-a-merge-policy). 
       operationId: updateMergePolicy
       produces:
       - application/json
@@ -373,7 +376,7 @@ paths:
       tags:
       - Merge policies
       summary: Update one or more attributes of a merge policy
-      description: ''
+      description: You can use this endpoint to update individual fields for the specified merge policy. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/merge-policies/merge-policies.html?lang=en#edit-individual-merge-policy-fields).
       operationId: patchMergePolicy
       produces:
       - application/json
@@ -420,7 +423,7 @@ paths:
       tags:
         - Merge policies
       summary: Delete a merge policy
-      description: ''
+      description: You can use this endpoint to delete the specified merge policy. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/merge-policies/merge-policies.html?lang=en#delete-a-merge-policy).
       operationId: deleteMergePolicy
       produces:
         - application/json
@@ -450,6 +453,7 @@ paths:
       tags:
         - Merge policies
       summary: Retrieve multiple merge policies using multiple merge policy IDs
+      description: You can use this endpoint to retrieve multiple merge policies. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/merge-policies/merge-policies.html?lang=en#retrieve-multiple-merge-policies-by-their-ids).
       operationId: bulkGetMergePolicies
       produces:
       - application/json
@@ -488,6 +492,7 @@ paths:
       tags:
         - Entities
       summary: Retrieve an entity
+      description: You can use this endpoint to look up the specified entity. For more information, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/entities.html?lang=en#access-profile-data-by-identity).
       operationId: retrieveEntity
       produces:
         - application/json
@@ -615,6 +620,7 @@ paths:
       tags:
         - Entities
       summary: Retrieve multiple entities
+      description: You can use this endpoint to retrieve multiple profile entities. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/entities.html?lang=en#access-profile-data-by-list-of-identities).
       operationId: retrieveMultipleEntities
       consumes:
         - application/json
@@ -669,6 +675,7 @@ paths:
       tags:
         - Entities
       summary: Delete an entity
+      description: You can use this endpoint to delete the specified profile entity.
       operationId: deleteEntity
       produces:
         - application/json
@@ -736,8 +743,8 @@ paths:
     get:
       tags:
         - Projection configurations
-      summary: List an edge projection
-      description: ''
+      summary: List edge projections
+      description: You can use this endpoint to list all the edge configurations that belong to your IMS Organization. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/edge-projections.html?lang=en#list-all-projection-configurations). 
       operationId: listProjectionConfigurations
       produces:
         - application/vnd.adobe.platform.projectionConfigList+json; version=1
@@ -817,7 +824,12 @@ paths:
       tags:
         - Projection configurations
       summary: Create an edge projection configuration
-      description: 'The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee that changes to the definition of the projection are reflected instantly on the edges. It is best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.'
+      description: >-
+        You can use this endpoint to create a new edge projection configuration. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/edge-projections.html?lang=en#create-a-projection-configuration).
+
+
+        **Note:** The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee that changes to the definition of the projection are reflected instantly on the edges. It is best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.
+
       operationId: createProjectionConfiguration
       consumes:
         - application/vnd.adobe.platform.projectionConfig+json; version=1
@@ -905,7 +917,7 @@ paths:
       tags:
         - Projection configurations
       summary: Retrieve an edge projection configuration
-      description: ''
+      description: You can use this endpoint to look up the specified edge projection configuration.
       operationId: retrieveProjectionConfiguration
       produces:
         - application/vnd.adobe.platform.projectionConfig+json; version=1
@@ -982,7 +994,11 @@ paths:
       tags:
         - Projection configurations
       summary: Create or update an edge projection configuration
-      description: 'The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee that changes to the definition of the projection are reflected instantly on the edges. It is best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.'
+      description: >-
+        You can use this endpoint to **replace** the contents of the specified edge projection configuration.
+      
+
+        **Note:** The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee that changes to the definition of the projection are reflected instantly on the edges. It is best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.
       operationId: updateProjectionConfiguration
       consumes:
         - application/vnd.adobe.platform.projectionConfig+json; version=1
@@ -1066,7 +1082,11 @@ paths:
       tags:
         - Projection configurations
       summary: Delete an edge projection configuration
-      description: 'API response is immediate, but the actual changes to the projections on the edges take place asynchronously. Eventually, the result is that the profile data for the given customer will be wiped from all edges.'
+      description: >-
+        You can use this endpoint to delete the specified edge projection configuration.
+
+        
+        **Note:** The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. Eventually, the result is that the profile data for the given customer will be wiped from all edges.'
       operationId: deleteProjectionConfiguration
       parameters:
         - $ref: '#/parameters/authorization'        
@@ -1140,6 +1160,7 @@ paths:
       tags:
         - Projection destinations
       summary: List all edge projection destinations
+      description: You can use this endpoint to list all the edge projection destinations in your IMS Organization. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/edge-projections.html?lang=en#list-all-destinations).
       operationId: listProjectionDestinations
       produces:
         - application/vnd.adobe.platform.projectionDestinationList+json; version=1
@@ -1194,7 +1215,11 @@ paths:
       tags:
         - Projection destinations
       summary: Create an edge projection destination
-      description: 'The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee that changes to the definition of the projection are reflected instantly on the edges. It is best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.'
+      description: >-
+        You can use this endpoint to create a new edge projection destination. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/edge-projections.html?lang=en#create-a-destination).
+
+
+        **Note:** The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee that changes to the definition of the projection are reflected instantly on the edges. It is best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.
       operationId: createProjectionDestination
       consumes:
         - application/vnd.adobe.platform.projectionDestination+json; version=1
@@ -1276,7 +1301,7 @@ paths:
       tags:
         - Projection destinations
       summary: Retrieve an edge projection destination
-      description: ''
+      description: You can use this endpoint to look up the specified projection destination. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/edge-projections.html?lang=en#view-a-destination).
       operationId: retrieveProjectionDestination
       produces:
         - application/vnd.adobe.platform.projectionDestination+json; version=1
@@ -1353,7 +1378,11 @@ paths:
       tags:
         - Projection destinations
       summary: Create or update an edge projection destination
-      description: 'The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee whatsoever that changes to the definition of the projection are reflected instantly on the edges – in fact, it''s best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.'
+      description: >-
+        You can use this endpoint to **replace** the contents of the specified edge projection destination. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/edge-projections.html?lang=en#update-a-destination).
+
+
+        **Note:** The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. There is no guarantee whatsoever that changes to the definition of the projection are reflected instantly on the edges - in fact, it's best to assume that there is a noticeable amount of time between the update of the definition of the projection and the update of the actual projection on any edge.
       operationId: putProjectionDestination
       consumes:
         - application/vnd.adobe.platform.projectionDestination+json; version=1
@@ -1437,7 +1466,11 @@ paths:
       tags:
         - Projection destinations
       summary: Delete an edge projection destination
-      description: 'API response is immediate, but the actual changes to the projections on the edges take place asynchronously. Eventually, the result is that the profile data for the given customer will be wiped from all edges.'
+      description: >-
+        You can use this endpoint to delete the specified edge projection destination. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/edge-projections.html?lang=en#delete-a-destination).
+
+        
+        **Note:** The API response is immediate, but the actual changes to the projections on the edges take place asynchronously. Eventually, the result is that the profile data for the given customer will be wiped from all edges.'
       operationId: deleteProjectionDestination
       parameters:
         - $ref: '#/parameters/authorization'        
@@ -1515,7 +1548,7 @@ paths:
       tags:
         - Profile System Jobs
       summary: List all delete requests (Profile System Jobs)
-      description: ''
+      description: You can use this endpoint to list all the delete requests (also known as Profile system jobs) that belong to your IMS Organization. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/profile-system-jobs.html?lang=en#view-delete-requests).
       operationId: listDeleteRequests
       produces:
         - application/json
@@ -1552,7 +1585,9 @@ paths:
         - Profile System Jobs
       summary: Create delete request (Profile System Job)
       description: >-
-        Initiating a new delete request is done through a POST request to the `/systems/jobs` endpoint, where the ID of the dataset or batch to be deleted is provided in the body of the request.
+          You can use this endpoint to create a delete request (also known as a Profile system job).
+          
+          Initiating a new delete request is done through a POST request to the `/systems/jobs` endpoint, where the ID of the dataset or batch to be deleted is provided in the body of the request.
         
           In order to delete a dataset, the dataset ID must be included in the body of the POST request. This action will delete ALL data for a given dataset. Experience Platform allows you to delete datasets based on both record and time series schemas.
           
@@ -1560,7 +1595,7 @@ paths:
 
           **Note:** The reason you cannot delete batches for datasets based on record schemas is because record type dataset batches overwrite previous records and therefore cannot be "undone" or deleted. The way to remove the impact of erroneous batches for datasets based on record schemas is to re-ingest the batch with the correct data and it will overwrite the incorrect records. 
           
-          For more information on record and time series behavior, please review the section on XDM data behaviors in the [XDM System overview](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html).
+          For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/profile-system-jobs.html?lang=en#create-a-delete-request). For more information on record and time series behavior, please review the section on XDM data behaviors in the [XDM System overview](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html).
       operationId: createDeleteRequest
       produces:
         - application/json
@@ -1602,8 +1637,8 @@ paths:
     get:
       tags:
         - Profile System Jobs
-      summary: 'Retrieve a delete request (Profile System Job)'
-      description: ''
+      summary: Retrieve a delete request (Profile System Job)
+      description: You can use this endpoint to retrieve the specified delete request (also known as a Profile system job). For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/profile-system-jobs.html?lang=en#view-a-specific-delete-request).
       operationId: retrieveDeleteRequest
       produces:
         - application/json
@@ -1662,7 +1697,7 @@ paths:
       tags:
         - Profile preview
       summary: Preview the last successful sample job
-      description: ''
+      description: You can use this endpoint to view the details of the last successful sample job that was run on your IMS Organization. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/preview-sample-status.html?lang=en#view-last-sample-status).
       operationId: previewSampleStatus
       produces:
         - application/json
@@ -1685,7 +1720,7 @@ paths:
       tags:
         - Profile preview
       summary: View a report showing the distribution of profiles by dataset
-      description: ''
+      description: You can use this endpoint to retrieve a report that lists the profile distribution by dataset. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/preview-sample-status.html?lang=en#list-profile-distribution-by-dataset).
       operationId: profileDatasetReport
       produces:
         - application/json
@@ -1713,7 +1748,7 @@ paths:
       tags:
         - Profile preview
       summary: View a report showing the distribution of profiles by namespace
-      description: ''
+      description: You can use this endpoint to retrieve a report that lists the profile distribution by identity namespace. For more information on using this endpoint, please read the [Profile developer guide](https://experienceleague.adobe.com/docs/experience-platform/profile/api/preview-sample-status.html?lang=en#list-profile-distribution-by-identity-namespace).
       operationId: profileNamespaceReport
       produces:
         - application/json
@@ -1958,11 +1993,11 @@ definitions:
       schemaName:
         type: string
         example: profile
-        description: The xdm schema associated with the profile projection configuration
+        description: The XDM schema associated with the profile projection configuration
       name:
         type: string
         example: default
-        description: 'The projection name, identifying a customer projection configuration within an xdm schema'
+        description: 'The projection name, identifying a customer projection configuration within an XDM schema'
       destinationId:
         type: string
         example: 1111-2222-3333-4444
@@ -2017,7 +2052,7 @@ definitions:
       name:
         type: string
         example: default
-        description: 'The projection name, identifying a customer projection configuration within a xdm schema'
+        description: 'The projection name, identifying a customer projection configuration within a XDM schema'
       selector:
         type: string
         example: 'person.gender,addresses.city,phoneNumbers.number'
@@ -2037,7 +2072,7 @@ definitions:
       mergePolicyId:
         type: "string"
         example: "90b2977c-afb0-4b93-aea3-2eea5f26131d"
-        description: "Id of the merge policy. Merge policy includes information of Identity stitching and key-value xdm object merging. If not present, the default merge policy will be used."
+        description: "Id of the merge policy. Merge policy includes information of Identity stitching and key-value XDM object merging. If not present, the default merge policy will be used."
     description: 'Projections are an edge "view" of the full profile data managed by Real-time Customer Profile. Edge projections are materialized by applying a mask on top of the complete Profile data. Each customer can manage the edge projections by maintaining a projection configuration using the Edge Projection Configuration API. There is one single projection configuration per customer. <br/>A projection configuration contains:<ul><li>A selector of properties under the extended data model that are to be replicated to the edges (the mask to apply on top of the data in Profile).</li><li>A time-to-live (TTL) value representing the default maximum time an idle profile projection is stored on the edge before being deleted. Expressed in seconds</li></ul>'
   ProjectionConfigurationList:
     type: object
@@ -2676,7 +2711,7 @@ parameters:
   x-request-id:
     name: x-request-id
     in: header
-    description: Optional header that may be used for debugging purposes when investigating issues with a workflow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
+    description: An optional header that may be used for debugging purposes when investigating issues with a workflow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
     required: false
     type: string
   eventTypeId:
@@ -2714,12 +2749,14 @@ parameters:
   start:      
     name: start
     in: query
-    description: Return results from a specific page offset. For example, `start=3`
+    description: Return results from a specific page offset.
     required: false
     type: integer
+    x-example: 2
   limit:  
     name: limit
     in: query
-    description: Limit response to a specific number of objects. Must be a positive number. For example, `limit=10`
+    description: Determines the number of results returned per page. Must be a positive integer.
     required: false
     type: integer
+    x-example: 10
