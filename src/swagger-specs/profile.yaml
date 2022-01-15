@@ -233,10 +233,28 @@ paths:
           x-example: _xdm.context.profile
         - name: default
           in: query
-          description: default flag
+          description: A boolean value that filters results by whether or not the merge policies are default for a schema class.
           required: false
           type: boolean
           x-example: true
+        - name: identityGraph.type
+          in: query
+          description: Filters the returned results by the **identity graph** type. Possible values include `none` and `pdg` (which stands for private graph).
+          required: false 
+          type: string
+          x-example: pdg
+          enum:
+            - pdg
+            - none
+        - name: attributeMerge.type
+          in: query
+          description: Filters the returned results by the **attribute merge** type. Possible values include `timestampOrdered` and `dataSetPrecedence`.
+          required: false
+          type: string
+          x-example: timestampOrdered
+          enum:
+            - timestampOrdered
+            - dataSetPrecedence
       responses:
         '200':
           description: List of merge policies returned
@@ -262,19 +280,14 @@ paths:
         - $ref: '#/parameters/content-type'           
         - name: x-profile-instance-id
           in: header
-          description: Profile Instance ID
+          description: The ID of the profile instance
           required: true
           type: string
           x-example: ups
-        - name: x-request-id
-          in: header
-          description: Request Id
-          required: false
-          type: string
-          x-example: q0gf6caRuRtX2s5khaN1Zgd1OoEXcPJA
+        - $ref: '#/parameters/x-request-id'
         - in: body
           name: body
-          description: merge policy object
+          description: Merge policy body schema
           required: true
           schema:
             $ref: '#/definitions/PostMergePolicy'
@@ -2307,17 +2320,17 @@ definitions:
       name:
         type: string
         example: real-time-customer-profile-default
-        description: merge policy name
+        description: A human-friendly name that the merge policy can be identified by in list views.
       imsOrgId:
         type: string
         example: 1BD6382559DF0C130A49422D@AdobeOrg
-        description: ims org id
+        description: The ID of the IMS Organization that the merge policy belongs to.
       schema:
         $ref: '#/definitions/SchemaClass'
       default:
         type: boolean
         example: false
-        description: default flag
+        description: A boolean that specifies whether the merge policy is default on the schema.
       identityGraph:
         $ref: '#/definitions/IdentityGraph'
       attributeMerge:
@@ -2325,8 +2338,12 @@ definitions:
       updateEpoch:
         type: integer
         example: 1234567890
-        description: update timestamp
-    description: 'merge policy'
+        description: The date of the last update to the merge policy.
+      isActiveOnEdge:
+        type: boolean
+        example: false
+        description: A boolean value that indicates if this merge policy can be used on edge. By default, this value is false.
+    description: 'Merge policy body'
   MergePolicy:
     type: object
     allOf:
@@ -2334,14 +2351,14 @@ definitions:
           id:
             type: string
             example: 10648288-cda5-11e8-a8d5-f2801f1b9fd1
-            description: merge policy id
+            description: The system generated unique identifier for the merge policy. This is generated at the time of creation.
       - $ref: '#/definitions/PostMergePolicy'
       - properties:
           version:
             type: integer
             example: 1
-            description: merge policy version
-    description: 'merge policy'
+            description: A Platform maintained version of the merge policy. This read-only value is incremented every time the merge policy is updated.
+    description: 'Merge policy body'
   SchemaClass:
     type: object
     required:
@@ -2360,11 +2377,11 @@ definitions:
       type:
         type: string
         example: pdg
-        description: identity graph type
+        description: The identity graph type indicates what type of identity stitching will be done for the merge policies. If the type is `none`, no identity stitching will be performed. If the type is `pdg`, identity stitching will be performed based on your private identity graph.
         enum:
         - none
         - pdg
-    description: identity graph
+    description: The identity graph field on a merge policy determines how to determine the related identities for a user.
   AttributeMerge:
     type: object
     required:
@@ -2373,15 +2390,16 @@ definitions:
       type:
         type: string
         example: timestampOrdered
-        description: attribute merge type
+        description: The type of attribute merge that will be applied for the merge policies. If the type is `timestampOrdered`, it will give priority to the profile that was updated last. If the type is `dataSetPrecedence`, it will give priority to profile fragments based on the dataset from which they come from. When using `dataSetPrecedence`, the `order` array **must** be supplied. By default, the attributeMerge object will use type `timestampOrdered`.
         enum:
         - timestampOrdered
         - dataSetPrecedence
       order:
         type: array
+        description: If the type is `dataSetPrecedence`, the `order` array must be supplied with a list of datasets. Any datasets that are not included in the list will **not** be merged. The `order` array lists the IDs of the datasets in order of priority.
         items:
           type: string
-    description: attribute merge
+    description: The attribute merge field on a merge policy determines which profile attributes to prioritize in the event of a merge conflict between key value (record data) type datasets.
   PatchOperation:
     type: object
     required:
