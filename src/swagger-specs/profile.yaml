@@ -67,9 +67,9 @@ paths:
           schema:
             $ref: '#/definitions/listComputedAttributes'
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     post:
       tags:
         - (Alpha) Computed Attributes
@@ -106,9 +106,9 @@ paths:
               * "Could not lookup schema of the computed attribute for the provided path"
               * "Return schema of the expression is not same as the schema of the computed attribute in the XDM schema".
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
   '/config/computedAttributes/{ATTRIBUTE_ID}':
     get:
       tags:
@@ -136,9 +136,9 @@ paths:
         '404':
           description: Computed attribute not found
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     patch:
       tags:
         - (Alpha) Computed Attributes
@@ -164,9 +164,9 @@ paths:
         '404':
           description: Computed attribute not found
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     delete:
       tags:
         - (Alpha) Computed Attributes
@@ -193,9 +193,9 @@ paths:
         '422':
           description: Cannot perform delete as some other functions are dependent on this function.
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
   '/config/mergePolicies':
     get:
       tags:
@@ -261,9 +261,9 @@ paths:
           schema:
             $ref: '#/definitions/MergePoliciesResponse'
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     post:
       tags:
         - Merge policies
@@ -278,12 +278,7 @@ paths:
         - $ref: '#/parameters/x-gw-ims-org-id'
         - $ref: '#/parameters/x-sandbox-name'
         - $ref: '#/parameters/content-type'           
-        - name: x-profile-instance-id
-          in: header
-          description: The ID of the profile instance
-          required: true
-          type: string
-          x-example: ups
+        - $ref: '#/parameters/x-profile-instance-id'
         - $ref: '#/parameters/x-request-id'
         - in: body
           name: body
@@ -293,19 +288,19 @@ paths:
             $ref: '#/definitions/PostMergePolicy'
       responses:
         '200':
-          description: Merge Policy successfully created
+          description: The merge policy was successfully created.
           schema:
             $ref: '#/definitions/MergePolicy'
         '400':
-          description: Please double check your post body
+          description: The merge policy could not be created. Please double check your post body and try again.
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden.
         '429':
-          description: Request rate too large!
+          description: You have sent too many requests to this endpoint in a short period of time. Please try again later.
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
   '/config/mergePolicies/{mergePolicyId}':
     get:
       tags:
@@ -321,23 +316,18 @@ paths:
         - $ref: '#/parameters/x-api-key'
         - $ref: '#/parameters/x-gw-ims-org-id'
         - $ref: '#/parameters/x-sandbox-name'
-        - name: x-request-id
-          in: header
-          description: Request Id
-          required: false
-          type: string
-          x-example: q0gf6caRuRtX2s5khaN1Zgd1OoEXcPJA
+        - $ref: '#/parameters/x-request-id'
       responses:
         '200':
-          description: MergePolicy successfully returned
+          description: The merge policy was successfully retrieved.
           schema:
             $ref: '#/definitions/MergePolicy'
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '404':
-          description: MergePolicy not found
+          description: The merge policy was not found.
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     put:
       tags:
       - Merge policies
@@ -352,39 +342,29 @@ paths:
         - $ref: '#/parameters/x-api-key'
         - $ref: '#/parameters/x-gw-ims-org-id'
         - $ref: '#/parameters/x-sandbox-name'
-        - name: x-profile-instance-id
-          in: header
-          description: Profile Instance ID
-          required: true
-          type: string
-          x-example: ups
-        - name: x-request-id
-          in: header
-          description: Request Id
-          required: false
-          type: string
-          x-example: q0gf6caRuRtX2s5khaN1Zgd1OoEXcPJA
+        - $ref: '#/parameters/x-profile-instance-id'
+        - $ref: '#/parameters/x-request-id'
         - in: body
           name: body
-          description: merge policy object
+          description: The updated merge policy body.
           required: true
           schema:
             $ref: '#/definitions/MergePolicy'
       responses:
         '200':
-          description: Merge Policy successfully updated
+          description: The merge policy was successfully updated.
           schema:
             $ref: '#/definitions/MergePolicy'
         '400':
-          description: Please double check your post body
+          description: The merge policy was not updated. Please double check the body and try again.
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '429':
-          description: Request rate too large!
+          description: You have sent too many requests to this endpoint in a short period of time. Please try again later.
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     patch:
       tags:
       - Merge policies
@@ -399,18 +379,8 @@ paths:
       - $ref: '#/parameters/x-api-key'
       - $ref: '#/parameters/x-gw-ims-org-id'
       - $ref: '#/parameters/x-sandbox-name'
-      - name: x-profile-instance-id
-        in: header
-        description: Profile Instance ID
-        required: true
-        type: string
-        x-example: ups
-      - name: x-request-id
-        in: header
-        description: Request Id
-        required: false
-        type: string
-        x-example: q0gf6caRuRtX2s5khaN1Zgd1OoEXcPJA
+      - $ref: '#/parameters/x-profile-instance-id'
+      - $ref: '#/parameters/x-request-id'
       - in: body
         name: body
         description: a list of patch operation
@@ -421,17 +391,17 @@ paths:
             $ref: '#/definitions/PatchOperation'
       responses:
         '200':
-          description: Merge Policy successfully updated
+          description: The merge policy was successfully updated.
         '400':
-          description: Please double check your post body
+          description: The merge policy could not be updated. Please double check the body and try again.
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '429':
-          description: Request rate too large!
+          description: You have sent too many requests to this endpoint in a short period of time. Please try again later.
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     delete:
       tags:
         - Merge policies
@@ -446,21 +416,16 @@ paths:
         - $ref: '#/parameters/x-api-key'
         - $ref: '#/parameters/x-gw-ims-org-id'
         - $ref: '#/parameters/x-sandbox-name'
-        - name: x-request-id
-          in: header
-          description: Request Id
-          required: false
-          type: string
-          x-example: q0gf6caRuRtX2s5khaN1Zgd1OoEXcPJA
+        - $ref: '#/parameters/x-request-id'
       responses:
         '200':
-          description: Merge Policy deleted successfully
+          description: The merge policy was deleted successfully.
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '404':
-          description: MergePolicy not found
+          description: The merge policy was not found. Please try again with a different merge policy.
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
   '/config/mergePolicies/bulk-get':
     post:
       tags:
@@ -516,7 +481,7 @@ paths:
         - $ref: '#/parameters/x-sandbox-name'
         - name: schema.name
           in: query
-          description: XED schema class name.
+          description: The name of the XDM schema you want to retrieve.
           type: string
           required: true
           x-example: "_xdm.context.profile"
@@ -528,105 +493,105 @@ paths:
           x-example: "_xdm.context.profile"
         - name: entityId
           in: query
-          description: 'ID of the entity. For Native XID lookup, use `entityId=<XID>` and leave `entityIdNS` absent; For ID:NS lookup, use both `entityId` and `entityIdNS` fields.'
+          description: 'The ID of the entity. If the value of this parameter is not an XID, an identity namespace parameter **must** also be provided. '
           type: string
           required: false
           x-example: "GtghAUFkdGVzdDE"
         - name: entityIdNS
           in: query
-          description: 'Identity Namespace code. Used for ID:NS lookup. If this field is used, `entityId` cannot be empty.'
+          description: 'The identity namespace code. This **must** be provided if the provided `entityId` is **not** an XID.'
           type: string
           required: false
           x-example: "UPS1"
         - name: relatedEntityId
           in: query
-          description: 'ID of the entity that the ExperienceEvents are associated with. Used when looking up ExperienceEvents. For Native XID lookup, use `relatedEntityId=<XID>` and leave `relatedEntityIdNS` absent; For ID:NS lookup, use both `relatedEntityId` and `relatedEntityIdNS` fields.'
+          description: "If the `schema.name` is `_xdm.context.experienceevent`, this value **must** specify the related profile entity's identity namespace. If the value of this parameter is not an XID, an identity namespace parameter **must** also be provided."
           type: string
           required: false
           x-example: "GtghAUFkdGVzdDE"
         - name: relatedEntityIdNS
           in: query
-          description: 'Identity Namespace code of the related entity ID of ExperienceEvent. Used when looking up ExperienceEvents. If this field is used, `entityId` cannot be empty.'
+          description: 'If the `schema.name` is `_xdm.context.experienceevent`, this value **must** specify the identity namespace for the entity specified in `relatedEntityId`.'
           type: string
           required: false
           x-example: "UPS1"
         - name: fields
           in: query
-          description: Fields for the model object. By default, all fields will be fetched. Separated by comma.
+          description: Filters the data returned in the response. Use this field to specify which schema field values to include in the data retrieved. To retrieve multiple fields, separate values by a comma with **not** spaces between.
           required: false
           type: string
           x-example: "person.name.firstName,person.name.lastName"
         - name: mergePolicyId
           in: query
-          description: 'ID of the merge policy. A merge policy includes information for Identity stitching and key-value XDM object merging. If not present, the default merge policy will be used.'
+          description: "The ID of the merge policy that will govern the data returned. If a merge policy is not specified in the call, your organization's default merge policy for that schema will be used. If no default merge policy has been configured, the default is **no** profile merge and **no** identity stitching."
           required: false
           type: string
           x-example: 'example-mergePolicy'
         - name: startTime
           in: query
-          description: 'Start time of Time range filter for ExperienceEvents. Should be at millisecond granularity. Included. Default: From beginning.'
+          description: 'Specified the start time to filter time-series objects in milliseconds. By default, this filters from the very beginning.'
           x-example: '1539838505'
           required: false
           type: number
         - name: endTime
           in: query
-          description: 'End time of Time range filter for ExperienceEvents. Should be at millisecond granularity. Excluded. Default: To the end.'
+          description: 'Specified the end time to filter time-series objects in milliseconds. By default, this filters until the very end.'
           x-example: '1539838510'
           required: false
           type: number
         - name: limit
           in: query
-          description: 'Number of records to return from the result. Only for time-series objects. Default: 1000'
+          description: 'Limits the number of records to return from the result. Only for time-series objects. By default, this value is 1000.'
           x-example: 10
           required: false
           type: number
         - name: orderby
           in: query
-          description: 'The sort order of retrieved ExperienceEvents by timestamp. Syntax: (+/-)timestamp. Default: +timestamp'
+          description: 'The sort order of retrieved experience events by timestamp. The syntax of this is `(+/-)timestamp`. By default, the value is `+timestamp`.'
           x-example: '-timestamp'
           required: false
           type: string
         - name: property
           description: >- 
-            Filter by the property value. Supported evaluators include =, !=, <, <=, >, >=. If more than one property filter is provided, it needs to be concatenated with `&`. Only a maximum of **three** properties are supported. When using URLs, they must be encoded. When using date filters, they must be encoded as a string in the format "yyyy-mm-dd" or "yyyymmdd". This query parameter is only supported for experience events.<br><br>Example: `property=web.webPageDetails.isHomepage=false&property=placeContext.localTime<="2020-07-20"`
+            Filter by the property value. Supported evaluators include =, !=, <, <=, >, >=. If more than one property filter is provided, it needs to be concatenated with `&`. Only a maximum of **three** properties are supported. <br><br> When using URLs, they must be encoded. When using date filters, they must be encoded as a string in the format "yyyy-mm-dd" or "yyyymmdd". This query parameter is only supported for experience events.<br><br>Example: `property=web.webPageDetails.isHomepage=false&property=placeContext.localTime<="2020-07-20"`
           x-example: 'property=web.webPageDetails.isHomepage=false&property=placeContext.localTime<="2020-07-20"' 
           in: query
           type: string
         - name: withCA
           in: query
-          description: 'Feature flag for enabling computed attributes for lookup. Default: false'
+          description: 'Feature flag for enabling computed attributes for lookup. By default, this value is false.'
           x-example: true
           required: false
           type: boolean
       responses:
         '200':
-          description: XDM object(s) successfully returned.
+          description: The list of XDM objects was successfully returned.
           schema:
             $ref: '#/definitions/GetXDMObjectResponseEntity'
         '400':
-          description: Bad Request.
-          schema:
-            $ref: '#/definitions/ResponseErrorContext'
-        '422':
-          description: Syntax is correct but Profile Access is not able to process your request.
+          description: The list of XDM objects could not be returned. Please try again.
           schema:
             $ref: '#/definitions/ResponseErrorContext'
         '403':
-          description: Forbidden.
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
           schema:
             $ref: '#/definitions/ForbiddenError'
         '404':
-          description: XDM objects not found.
+          description: The list of XDM objects was not found.
           schema:
             $ref: '#/definitions/NotFoundError'
+        '422':
+          description: The related graph links more than 50 identities. Please add more query parameters to narrow your search, and try again.
+          schema:
+            $ref: '#/definitions/ResponseErrorContext'
         '429':
-          description: Too many requests. Please try again later.
+          description: You have sent too many requests to this endpoint in a short period of time. Please try again later.
           schema:
             type: array
             items:
               $ref: '#/definitions/TooManyRequestError'
         '500':
-          description: Internal Server Error.
+          description: An internal server error occurred. Please try again later.
           schema:
             $ref: '#/definitions/ResponseInternalErrorContext'
     post:
@@ -647,13 +612,13 @@ paths:
         - $ref: '#/parameters/content-type'        
         - in: body
           name: body
-          description: XDM objects to be created. Each object should be in JSON format.
+          description: The list of XDM objects you want to retrieve. Each object should be in JSON format.
           required: true
           schema:
             $ref: '#/definitions/PostRequestBodyEntity'
       responses:
         '200':
-          description: XDM objects successfully returned.
+          description: The list of XDM objects was successfully returned.
           schema:
             $ref: '#/definitions/GetXDMObjectResponseEntity'
         '207':
@@ -667,7 +632,7 @@ paths:
           schema:
             $ref: '#/definitions/ResponseErrorContext'
         '403':
-          description: Forbidden.
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
           schema:
             $ref: '#/definitions/ForbiddenError'
         '404':
@@ -675,13 +640,13 @@ paths:
           schema:
             $ref: '#/definitions/NotFoundError'
         '429':
-          description: Too many requests. Please try again later.
+          description: You have sent too many requests to this endpoint in a short period of time. Please try again later.
           schema:
             type: array
             items:
               $ref: '#/definitions/TooManyRequestError'
         '500':
-          description: Internal Server Error.
+          description: An internal server error occurred. Please try again later. .
           schema:
             $ref: '#/definitions/ResponseInternalErrorContext'
     delete:
@@ -735,7 +700,7 @@ paths:
           schema:
             $ref: '#/definitions/ResponseErrorContext'
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
           schema:
             $ref: '#/definitions/ForbiddenError'
         '404':
@@ -743,13 +708,13 @@ paths:
           schema:
             $ref: '#/definitions/NotFoundError'
         '429':
-          description: Too many requests. Please try again later.
+          description: You have sent too many requests to this endpoint in a short period of time. Please try again later.
           schema:
             type: array
             items:
               $ref: '#/definitions/TooManyRequestError'
         '500':
-          description: Internal Server Error.
+          description: An internal server error occurred. Please try again later. .
           schema:
             $ref: '#/definitions/ResponseInternalErrorContext'                  
   '/config/projections':
@@ -790,12 +755,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '200':
           description: The edge projection configuration is returned.
@@ -878,12 +838,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '201':
           description: Creation was successful.
@@ -956,12 +911,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '200':
           description: The edge projection configuration is returned.
@@ -1044,12 +994,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '200':
           description: Update was successful.
@@ -1123,12 +1068,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '204':
           description: The edge projection configuration is successfully deleted.
@@ -1262,12 +1202,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '201':
           description: Creation was successful.
@@ -1340,12 +1275,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '200':
           description: The projection destination is returned.
@@ -1428,12 +1358,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '200':
           description: Update was successful.
@@ -1507,12 +1432,7 @@ paths:
           required: false
           type: string
           x-example: Bearer <token>
-        - name: x-request-id
-          in: header
-          description: Optional header that may be used for debugging purposes when investigating issues with a client flow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
-          required: false
-          type: string
-          x-example: d41ee840-0a10-4393-ab55-12fa54cb6172
+        - $ref: '#/parameters/x-request-id'
       responses:
         '204':
           description: The edge projection destination is successfully deleted.
@@ -1588,11 +1508,11 @@ paths:
           schema:
             "$ref": "#/definitions/ProfileSystemJobsResponse"
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
     post:
       tags:
         - Profile System Jobs
@@ -1639,13 +1559,13 @@ paths:
         '400':
           description: Invalid delete request (Profile System Job)
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '422':
           description: Delete request (Profile System Job) Definition already exists.
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
   '/system/jobs/{ID}':
     get:
       tags:
@@ -1671,13 +1591,13 @@ paths:
           schema:
             $ref: '#/definitions/ProfileSystemJob'
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '404':
           description: Delete request (Profile System Job) not found
         '500':
-          description: Internal Server Error
+          description: An internal server error occurred. Please try again later. 
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
     delete:
       tags:
         - Profile System Jobs
@@ -1700,11 +1620,11 @@ paths:
         '200':
           description: If removal is successful, returns HTTP Status 200 (OK) and an empty response body.
         '403':
-          description: Forbidden
+          description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '404':
           description: Delete request (Profile System Job) not found
         '503':
-          description: Service Unavailable
+          description: The service is unavailable. Please try again later. 
   '/previewsamplestatus':
     get:
       tags:
@@ -1725,9 +1645,9 @@ paths:
           schema:
             $ref: '#/definitions/PreviewSampleStatusPageResponse'
         '403':
-          description: "Forbidden"
+          description: "Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again."
         '503':
-          description: "Service Unavailable"
+          description: "The service is unavailable. Please try again later. "
   '/previewsamplestatus/report/dataset':
     get:
       tags:
@@ -1755,7 +1675,7 @@ paths:
         '404':
           description: "Dataset report does not exist for this date."
         '503':
-          description: "Service Unavailable"
+          description: "The service is unavailable. Please try again later. "
   '/previewsamplestatus/report/namespace':
     get:
       tags:
@@ -1783,7 +1703,7 @@ paths:
         '404':
           description: "Namespace report does not exist for this date."
         '503':
-          description: "Service Unavailable"
+          description: "The service is unavailable. Please try again later. "
 definitions:     
   listComputedAttributes:
     type: object
@@ -2685,6 +2605,13 @@ parameters:
     required: true
     type: string
     in: header
+  x-profile-instance-id:
+    name: x-profile-instance-id
+    in: header
+    description: The ID of the profile instance
+    required: true
+    type: string
+    x-example: ups
   content-type:
     name: Content-Type
     description: Type of content being sent in the body of the request. Should be 'application/json'.
@@ -2744,13 +2671,6 @@ parameters:
     description: All resources in Experience Platform are isolated to specific virtual sandboxes. Requests to Platform APIs require a header that specifies the name of the sandbox in which the operation will take place. See the [sandboxes overview](https://adobe.com/go/sandbox-overview-en) for more information.
     required: true
     type: string
-  x-profile-instance-id:  
-    name: x-profile-instance-id
-    in: header
-    description: Profile instance ID.
-    required: true
-    type: string
-    x-example: ups
   mergePolicyId:
     name: mergePolicyId
     in: path
