@@ -817,11 +817,11 @@ paths:
         - $ref: '#/parameters/x-request-id'
       responses:
         '201':
-          description: Creation was successful.
+          description: The edge projection was successfully created.
           schema:
             $ref: '#/definitions/ProjectionConfig'
         '400':
-          description: The request is malformed.
+          description: The edge projection configuration could not be created. Please double check your post body and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '401':
