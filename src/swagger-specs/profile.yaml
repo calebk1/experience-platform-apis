@@ -393,7 +393,7 @@ paths:
         '200':
           description: The merge policy was successfully updated.
         '400':
-          description: The merge policy could not be updated. Please double check the body and try again.
+          description: The merge policy could not be updated. Please double check your request body and try again.
         '403':
           description: Access to this endpoint is forbidden. Please ensure you have access to this endpoint before trying again.
         '429':
@@ -493,7 +493,7 @@ paths:
           x-example: "_xdm.context.profile"
         - name: entityId
           in: query
-          description: 'The ID of the entity. If the value of this parameter is not an XID, an identity namespace parameter **must** also be provided. '
+          description: 'The ID of the entity. If the value of this parameter is not an XID, an identity namespace parameter **must** also be provided.'
           type: string
           required: false
           x-example: "GtghAUFkdGVzdDE"
@@ -622,13 +622,13 @@ paths:
           schema:
             $ref: '#/definitions/GetXDMObjectResponseEntity'
         '207':
-          description: Failed to get records for some recordIds.
+          description: Failed to get records for the listed recordIds. Please double check the listed IDs and try again.
           schema:
             type: array
             items:
               $ref: '#/definitions/ErrorResponseById'
         '400':
-          description: Bad Request.
+          description: The list of XDM objects could not be returned. Please double check your request body and try again.
           schema:
             $ref: '#/definitions/ResponseErrorContext'
         '403':
@@ -646,7 +646,7 @@ paths:
             items:
               $ref: '#/definitions/TooManyRequestError'
         '500':
-          description: An internal server error occurred. Please try again later. .
+          description: An internal server error occurred. Please try again later.
           schema:
             $ref: '#/definitions/ResponseInternalErrorContext'
     delete:
@@ -664,39 +664,39 @@ paths:
         - $ref: '#/parameters/x-sandbox-name'
         - name: schema.name
           in: query
-          description: Name of the associated XDM schema.
+          description: The name of the XDM schema you want to delete.
           required: true
           type: string
           x-example: '_xdm.context.profile'
         - name: entityId
           in: query
-          description: 'ID of the entity. For Native XID, use `entityId=<XID>` and leave `entityIdNS` absent; For ID:NS, use both `entityId` and `entityIdNS` fields.'
+          description: 'The ID of the entity. If the value of this parameter is not an XID, an identity namespace parameter **must** also be provided.'
           type: string
           required: false
           x-example: 'GtghAUFkdGVzdDE'
         - name: entityIdNS
           in: query
-          description: 'Identity Namespace code. Used for ID:NS. If this field is used, `entityId` cannot be empty.'
+          description: 'The identity namespace code. This **must** be provided if the provided `entityId` is **not** an XID.'
           type: string
           required: false
           x-example: 'ECID'
         - name: mergePolicyId
           in: query
-          description: 'ID of the merge policy. A merge policy includes information for Identity stitching and key-value XDM object merging. If not present, the default merge policy will be used.'
+          description: 'The ID of the merge policy. A merge policy includes information for identity stitching and key-value XDM object merging. If not present, the default merge policy will be used.'
           required: false
           type: string
           x-example: '963d71a1-9875-4aea-a52b-c5c7a2504cae'
       responses:
         '202':
-          description: Accepted
+          description: The specified entities have been deleted.
         '207':
-          description: Failed to delete records with some IDs.
+          description: Failed to delete the records with the listed IDs. Please double check the listed IDs and try again.
           schema:
             type: array
             items:
               $ref: '#/definitions/ErrorResponseById'
         '400':
-          description: BadRequest
+          description: The specified entities could not be deleted. Please double check your request body and try again.
           schema:
             $ref: '#/definitions/ResponseErrorContext'
         '403':
@@ -704,7 +704,7 @@ paths:
           schema:
             $ref: '#/definitions/ForbiddenError'
         '404':
-          description: Not Found
+          description: The specified entities could not be found. Please double check your request body and try again.
           schema:
             $ref: '#/definitions/NotFoundError'
         '429':
@@ -714,7 +714,7 @@ paths:
             items:
               $ref: '#/definitions/TooManyRequestError'
         '500':
-          description: An internal server error occurred. Please try again later. .
+          description: An internal server error occurred. Please try again later.
           schema:
             $ref: '#/definitions/ResponseInternalErrorContext'                  
   '/config/projections':
@@ -730,39 +730,27 @@ paths:
         - $ref: '#/parameters/authorization'        
         - $ref: '#/parameters/x-gw-ims-org-id'
         - $ref: '#/parameters/x-sandbox-name'
-        - $ref: '#/parameters/x-api-key'      
-        - name: x-gw-ims-authorization
-          in: header
-          description: Gateway IMS service token.
-          required: true
-          type: string
-          x-example: Bearer <token>
+        - $ref: '#/parameters/x-api-key'
         - name: schemaName
           in: query
-          description: XDM schema name
+          description: The name of the schema class associated with the projection configuration you want to access. This is required **if** you are using the `name` parameter`, as a projection configuration name is only unique in the context of a schema class.
           required: false
           type: string
           x-example: Profile
         - name: name
           in: query
-          description: projection name
+          description: The name of the projection configuration you want to access. If you are using this parameter, you **must** also include the `schemaName` parameter.
           required: false
           type: string
           x-example: mobile_profile
-        - name: x-user-token
-          in: header
-          description: User access token.
-          required: false
-          type: string
-          x-example: Bearer <token>
         - $ref: '#/parameters/x-request-id'
       responses:
         '200':
-          description: The edge projection configuration is returned.
+          description: The list of edge projection configurations was successfully returned.
           schema:
             $ref: '#/definitions/ProjectionConfigurationList'
         '400':
-          description: The request is malformed.
+          description: The list of edge projection configurations could not be returned. Please double check your request and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '401':
@@ -770,29 +758,29 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
     post:
       tags:
         - Projection configurations
@@ -815,16 +803,10 @@ paths:
         - $ref: '#/parameters/x-api-key'  
         - name: schemaName
           in: query
-          description: XDM schema name
+          description: The name of the schema class associated with where you want to create your projection configuration.
           required: true
           type: string
           x-example: Profile
-        - name: x-gw-ims-authorization
-          in: header
-          description: Gateway IMS service token.
-          required: true
-          type: string
-          x-example: Bearer <token>
         - in: body
           name: body
           required: true
@@ -832,12 +814,6 @@ paths:
             $ref: '#/definitions/InputProjectionConfig'
           x-examples:
             properties: 'person.gender,addresses.city,phoneNumbers.number'
-        - name: x-user-token
-          in: header
-          description: User access token.
-          required: false
-          type: string
-          x-example: Bearer <token>
         - $ref: '#/parameters/x-request-id'
       responses:
         '201':
@@ -853,7 +829,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
@@ -869,17 +845,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
   '/config/projections/{projectionid}':
     get:
       tags:
@@ -926,7 +902,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
@@ -942,17 +918,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
     put:
       tags:
         - Projection configurations
@@ -1009,7 +985,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
@@ -1025,17 +1001,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
     delete:
       tags:
         - Projection configurations
@@ -1081,7 +1057,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
@@ -1097,17 +1073,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
   '/config/destinations':
     get:
       tags:
@@ -1137,7 +1113,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
@@ -1153,17 +1129,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
     post:
       tags:
         - Projection destinations
@@ -1217,7 +1193,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
@@ -1233,17 +1209,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
   '/config/destinations/{destinationId}':
     get:
       tags:
@@ -1290,7 +1266,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
@@ -1306,17 +1282,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
     put:
       tags:
         - Projection destinations
@@ -1373,7 +1349,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
@@ -1389,17 +1365,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
     delete:
       tags:
         - Projection destinations
@@ -1445,7 +1421,7 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '403':
-          description: The requester is not authorized to access the resource.
+          description: You are not authorized to access the resource. Please contact your system administrator for more details.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
@@ -1465,17 +1441,17 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
+          description: The request contains invalid values for one or more parameters. Please check the parameters and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '500':
-          description: This is an indicator of a server-side error.
+          description: An internal server error occurred. Please try again later.
         '502':
-          description: This is an indicator that the back-end service did not send a valid response.
+          description: The back-end server did not send a valid response. Please try again later.
         '503':
-          description: This is an indicator of a potential server overload.
+          description: The service is unavailable. Please try again later. 
         '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: The request has timed out. Please try again later.
   '/system/jobs':
     get:
       tags:
@@ -1985,7 +1961,7 @@ definitions:
       name:
         type: string
         example: default
-        description: 'The projection name, identifying a customer projection configuration within a XDM schema'
+        description: 'A descriptive name for the new projection configuration.'
       selector:
         type: string
         example: 'person.gender,addresses.city,phoneNumbers.number'
@@ -1994,13 +1970,13 @@ definitions:
         type: integer
         format: int32
         example: 1
-        description: An integer representing the current version of the projection configuration. It is used for updates. It must be bigger than 1.
+        description: An integer representing the current version of the projection configuration. This value is used for updates and must be bigger than 1.
         minimum: 1
         default: 1
       destinationId:
         type: string
         example: 1111-2222-3333-4444
-        description: The ID of the projection destination containing routing metadata for the projection destination.
+        description: The ID of for the edge destination the data will be projected to.
         default: 123-123-123-123
       mergePolicyId:
         type: "string"
