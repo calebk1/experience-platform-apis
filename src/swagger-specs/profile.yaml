@@ -833,15 +833,15 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '409':
-          description: Projection config already exists.
+          description: The projection configuration already exists. Please try again with a new post body.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
@@ -910,11 +910,11 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
@@ -953,31 +953,19 @@ paths:
           required: true
           type: string
           pattern: '[0-9a-zA-Z\-]+'
-        - name: x-gw-ims-authorization
-          in: header
-          description: Gateway IMS service token.
-          required: true
-          type: string
-          x-example: Bearer <token>
         - in: body
           name: body
           required: false
           schema:
             $ref: '#/definitions/InputProjectionConfig'          
-        - name: x-user-token
-          in: header
-          description: User access token.
-          required: false
-          type: string
-          x-example: Bearer <token>
         - $ref: '#/parameters/x-request-id'
       responses:
         '200':
-          description: Update was successful.
+          description: The edge projection configuration was successfully updated.
           schema:
             $ref: '#/definitions/ProjectionConfig'
         '400':
-          description: The request is malformed.
+          description: The edge projection configuration could not be updated. Please double check your request and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '401':
@@ -989,15 +977,15 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
-          description: Projection config not found.
+          description: The edge projection configuration was not found.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
@@ -1032,22 +1020,10 @@ paths:
           required: true
           type: string
           pattern: '[0-9a-zA-Z\-]+'
-        - name: x-gw-ims-authorization
-          in: header
-          description: Gateway IMS service token.
-          required: true
-          type: string
-          x-example: Bearer <token>
-        - name: x-user-token
-          in: header
-          description: User access token.
-          required: false
-          type: string
-          x-example: Bearer <token>
         - $ref: '#/parameters/x-request-id'
       responses:
         '204':
-          description: The edge projection configuration is successfully deleted.
+          description: The edge projection configuration was successfully deleted.
         '400':
           description: The request is malformed.
           schema:
@@ -1061,15 +1037,15 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '404':
-          description: The edge projection configuration has not yet been created.
+          description: The edge projection configuration you are trying to delete does not exist. Please try again with a different edge projection configuration.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
@@ -1101,11 +1077,11 @@ paths:
         - $ref: '#/parameters/x-request-id'
       responses:
         '200':
-          description: The projection destination is returned.
+          description: The list of projection destinations was successfully returned.
           schema:
             $ref: '#/definitions/ProjectionDestinationRepresentation'
         '400':
-          description: The request is malformed.
+          description: The list of projection destinations could not be successfully returned. Please double check your request and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '401':
@@ -1121,11 +1097,11 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
@@ -1197,11 +1173,11 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '409':
@@ -1274,11 +1250,11 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
@@ -1357,11 +1333,11 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '422':
@@ -1429,11 +1405,11 @@ paths:
           schema:
             $ref: '#/definitions/ProblemDetail'
         '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: The request uses a HTTP method that the server doesn't support. Please double check what HTTP method you used and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+          description: The Accept header sent is for a content type which does not exist on the server. Please use another Accept header and try again.
           schema:
             $ref: '#/definitions/ProblemDetail'
         '409':
