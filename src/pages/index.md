@@ -97,7 +97,7 @@ Map, transform, and validate data to and from Experience Data Model (XDM).
 
 [Dataset Service API](references/dataset-service.md)
 
-Manage usage labels for existing datasets within the Data Lake.
+Manage usage labels for existing datasets within the data lake.
 
 <DiscoverBlock slots="link, text"/>
 
