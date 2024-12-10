@@ -21,7 +21,7 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
     }
 
     document
-    .querySelector("#redocly-container")
+    .querySelector("#redocly_container")
     ?.setAttribute("daa-lh", "Platform APIs | Redocly");
 
     document
