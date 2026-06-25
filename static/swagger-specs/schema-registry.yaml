@@ -1808,7 +1808,7 @@ parameters:
     description: >- 
       Unlike field groups, defining a data type does not require `meta:extends` or `meta:intendedToExtend` fields, nor do fields need to be nested to avoid collisions.
 
-      When it comes to defining the field structure of data type itself, you can use primitive types (like `string` or `object`) or you can reference other existing data types through `$ref` attributes. See the guide on [defining custom XDM fields in the API](../tutorials/custom-fields-api.md) for detailed guidance on the expected format for different XDM field types.
+      When it comes to defining the field structure of data type itself, you can use primitive types (like `string` or `object`) or you can reference other existing data types through `$ref` attributes. See the guide on [defining custom XDM fields in the API](https://experienceleague.adobe.com/en/docs/experience-platform/xdm/tutorials/custom-fields-api) for detailed guidance on the expected format for different XDM field types.
     required: true
     in: body
     schema:
