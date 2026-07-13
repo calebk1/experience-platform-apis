@@ -2613,6 +2613,40 @@ paths:
           description: "There was an error in retrieving the audience map."
   /config/schedules/trigger:
     post:
+      tags:
+      - Schedules
+      summary: Trigger an existing schedule
+      operationId: triggerSchedule
+      parameters:
+        - $ref: '#/components/parameters/authorization'
+        - $ref: '#/components/parameters/x-api-key'
+        - $ref: '#/components/parameters/x-gw-ims-org-id'
+        - $ref: '#/components/parameters/x-sandbox-name'
+        - name: x-request-id
+          in: header
+          description: An optional header that may be used for debugging purposes when investigating issues with a workflow. The same ID can be used to identify a single request to the service from a flow. A new ID should be created for each request.
+          schema:
+            type: string
+      requestBody:
+        description: >-
+          - **id**: The ID of the schedule you want to trigger for activation. This ID **must** be a user-created schedule.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerSchedule'
+      responses:
+        "200":
+          x-summary: "Success"
+          "description": "The schedule was successfully triggered."
+        "400":
+          x-summary: "Bad request"
+          description: "The schedule ID is invalid."
+        "403":
+          x-summary: "Missing access permissions"
+          description: "You do not have permission to use this endpoint."
+        "500":
+          x-summary: "Internal server error"
+          description: "There was an error in triggering the schedule's activation."
   /search/namespaces:
     get:
       tags:
@@ -2960,6 +2994,13 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Schedule'
+    TriggerSchedule:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "3bd78ff8-c450-42f5-8f72-5f0ece3e35ac"
+          description: "The ID of the schedule you want to trigger for activation. This ID must be a user-created schedule."
     PlatformGeneratedAudience:
       type: object
       properties:
