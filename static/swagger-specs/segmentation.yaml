@@ -2994,6 +2994,25 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/Schedule'
+    ShortSchedule:
+      type: object
+      required:
+        - name
+        - schedule
+        - frequency
+      properties:
+        name:
+          type: string
+          description: The name of the schedule.
+          example: "Sample schedule"
+        schedule:
+          type: string
+          description: A cron expression stating when the schedule should be triggered. Jobs can only be scheduled to run once a day, meaning you cannot schedule a job to run more than once during a 24 hour period. For more information, please review the [cron expression format](http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html) documentation.
+          example: "0 0 18 * * ?"
+        frequency:
+          type: string
+          description: The frequency which the schedule runs. This value is based off of the schedule's cron expression. Possible values include `daily`, `weekly`, `monthly`, and `yearly`. 
+          example: "daily"
     TriggerSchedule:
       type: object
       properties:
