@@ -2993,7 +2993,7 @@ components:
         schedules:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/Schedule'
+            $ref: '#/components/schemas/ShortSchedule'
     ShortSchedule:
       type: object
       required:
@@ -4448,6 +4448,30 @@ components:
           type: string
           description: A unique, read-only, system-generated schedule ID.
           example: 5e61e66e-e8b4-4a7b-8d41-70c74b0b981a
+        imsOrgId:
+          type: string
+          description: The ID of the organization the schedule belongs to.
+          example: "{ORG_ID}"
+        sandbox:
+          type: object
+          description: "An object that contains the sandbox information about the schedule."
+          properties:
+            sandboxId:
+              type: string
+              description: "The ID of the sandbox."
+              example: "e7e17720-c5bb-11e9-aafb-87c71c35cac8"
+            sandboxName:
+              type: string
+              description: "The name of the sandbox."
+              example: "prod"
+            type:
+              type: string
+              description: "The type of sandbox."
+              example: "production"
+            default:
+              type: boolean
+              description: "A boolean that shows whether the sandbox is the default sandbox."
+              example: "true"
         name:
           type: string
           description: The name of the schedule.
@@ -4462,6 +4486,10 @@ components:
           type: string
           description: A cron expression stating when the schedule should be triggered. Jobs can only be scheduled to run once a day, meaning you cannot schedule a job to run more than once during a 24 hour period. For more information, please review the [cron expression format](http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html) documentation.
           example: 0 0 1 * * ?
+        frequency:
+          type: string
+          description: The frequency which the schedule runs. This value is based off of the schedule's cron expression. Possible values include `daily`, `weekly`, `monthly`, and `yearly`. 
+          example: "daily"
         state:
           type: string
           description: The state of the schedule. If the schedule is inactive, it must be activated before it will be triggered.
@@ -4479,8 +4507,11 @@ components:
               description: This field is required if the job type is batch_segmentation. It holds a list of segment definitions which need to be evaluated at the scheduled time. Use `*` to evaluate all segment definitions.
               items:
                 type: string
-                example: '*'
+                example: 'sampleSegmentDefinition'
           description: schedule properties
+        owner:
+          type: string
+          description: "The type of user that owns the schedule. Possible values include user and system."
         createEpoch:
           type: integer
           description: The timestamp, as unix time in seconds, for when the schedule was created.
@@ -4515,10 +4546,10 @@ components:
           properties:
             segments:
               type: array
-              description: This field is required if the job type is batch_segmentation. It holds a list of segment definitions which need to be evaluated at the scheduled time. Use `*` to evaluate all segment definitions.
+              description: This field is required if the job type is batch_segmentation. It holds a list of segment definitions which need to be evaluated at the scheduled time.
               items:
                 type: string
-                example: '*'
+                example: 'sampleSegmentDefinition'
           description: schedule properties
         schedule:
           type: string
